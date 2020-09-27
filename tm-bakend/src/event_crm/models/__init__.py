@@ -1,0 +1,1 @@
+from event_crm.models.models_event import *
