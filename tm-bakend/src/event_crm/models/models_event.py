@@ -56,7 +56,7 @@ class PartEvent(models.Model):
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Блок мероприятия',
-        related_query_name='part_event'
+        related_name='part_event'
     )
     is_active = models.BooleanField(
         'Активен', null=False, default=True)
@@ -80,19 +80,19 @@ class RegistrationEvent(models.Model):
         'event_crm.Event',
         on_delete=models.DO_NOTHING,
         verbose_name='Мероприятие',
-        related_query_name='registration_event')
+        related_name='registration_event')
     part_event = models.ForeignKey(
         'event_crm.PartEvent',
         on_delete=models.DO_NOTHING,
         null=True,
         verbose_name='Блок',
-        related_query_name='registration_event')
+        related_name='registration_event')
     event_participant = models.ForeignKey(
         'event_crm.EventParticipant',
         on_delete=models.DO_NOTHING,
         null=True,
         verbose_name='Участник мероприятия',
-        related_query_name='registration_event')
+        related_name='registration_event')
     is_free = models.BooleanField('Бесплатный вход', default=False)
     amount = models.IntegerField('Стоимость', null=True)
     is_confirm = models.BooleanField('Подтвердил присутствие', default=False)
@@ -157,7 +157,7 @@ class Payments(models.Model):
         'event_crm.RegistrationEvent',
         on_delete=models.DO_NOTHING,
         verbose_name='Мероприятие',
-        related_query_name='payments')
+        related_name='payments')
     amount = models.IntegerField('Стоимость', null=True)
     payment_method = models.CharField(
         'Тип оплаты',

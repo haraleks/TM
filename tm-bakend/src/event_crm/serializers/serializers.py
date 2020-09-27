@@ -30,6 +30,7 @@ class ViewEventParticipantsSerializer(serializers.ModelSerializer):
         model = EventParticipant
         fields = '__all__'
 
+
 class ViewPaymentsSerializer(serializers.ModelSerializer):
 
     class Meta:
