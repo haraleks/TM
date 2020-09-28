@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auht/', include('rest_framework.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('api/v1/', include('event_crm.urls')),
+    path('api/v1/', include('event_crm.urls_drf')),
+    path('', include('event_crm.urls')),
 
     # Authenticate and Authorize
     path('api-token-auth/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
