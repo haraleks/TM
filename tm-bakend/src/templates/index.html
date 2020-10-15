@@ -13,7 +13,7 @@
     
 <!-- Favicon
 ================================================== -->  
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
 
 <!-- CSS
 ================================================== -->
@@ -56,23 +56,24 @@
 <div class="col-lg-3 col-md-4">
     <div class="profile">
         <div class="profile-name">
-            <span class="name">Henry Rooney</span><br>
-            <span class="job">Creative Designer</span>
+            <span class="name">{{ events_detail.name }}</span><br>
+<!--            <span class="job">{{ events_detail.part_event.name }}</span>-->
         </div>
         <figure class="profile-image">
-            <img src="images/profile.jpg" alt="">
-        </figure> 
+<!--            <img src="{% static 'images/profile.jpg' %}" alt="">-->
+            <img src="{{ events_detail.image.url }}" alt="">
+
+        </figure>
         <ul class="profile-information">
             <li></li>
-            <li><p><span>Name:</span> Chris Johnson</p></li>
-            <li><p><span>Birthday:</span> 06 December 1987</p></li>
-            <li><p><span>Job:</span> Freelancer</p></li>
-            <li><p><span>Email:</span> henry@domain.com</p></li>
-            <li><p><span>Skype:</span> henryrooney85</p></li>
+            <li><p><span>Дата начала:</span> {{ events_detail.start_at }}</p></li>
+            <li><p><span>Дата окончания:</span> {{ events_detail.end_at }}</p></li>
+            <li><p><span>Стоимость:</span> {{ events_detail.price }} руб.</p></li>
+
         </ul>
-        <div class="col-md-12">
-            <button class="site-btn icon">Download Cv <i class="fa fa-download" aria-hidden="true"></i></button>
-        </div>
+<!--        <div class="col-md-12">-->
+<!--            <button class="site-btn icon">Download Cv <i class="fa fa-download" aria-hidden="true"></i></button>-->
+<!--        </div>-->
     </div>
 </div>
 
@@ -122,11 +123,10 @@
                 <!-- Text Section -->
                 <div class="row">
                     <section class="about-me line col-md-12 padding_30 padbot_45">
-                    <div class="section-title"><span></span><h2>About Me</h2></div>
-                    <p class="top_30">Started earnest brother believe an exposed so. Me he believing daughters if forfeited at furniture. Age again and stuff downs spoke. Late hour new nay able fat each sell. Nor themselves age introduced frequently use unsatiable devonshire get. They why quit gay cold rose deal park. One same they four did ask busy. Reserved opinions fat him nay position. Breakfast as zealously incommode do agreeable furniture. One too nay led fanny allow plate.
-                        <br>
-                        <br> Quick six blind smart out burst. Perfectly on furniture dejection determine my depending an to. Add short water court fat. Her bachelor honoured perceive securing but desirous ham required. Questions deficient acuteness to engrossed as. Entirely led ten humoured greatest and yourself. Besides ye country on observe. She continue appetite endeavor she judgment interest the met. For she surrounded motionless fat resolution may. </p>
-                </section>
+                    <div class="section-title"><span></span><h2>{{ events_detail.name }}</h2></div>
+                    <br>
+                        {{ events_detail.description | safe }}
+                    </section>
                 </div>
                 <!-- My Services Section -->
                 <div class="row">

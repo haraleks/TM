@@ -56,7 +56,7 @@ class PartEvent(models.Model):
         on_delete=models.CASCADE,
         null=True,
         verbose_name='Блок мероприятия',
-        related_name='part_event'
+        related_query_name='part_event'
     )
     is_active = models.BooleanField(
         'Активен', null=False, default=True)
