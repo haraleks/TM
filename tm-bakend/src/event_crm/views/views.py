@@ -15,6 +15,12 @@ class EventsDetailView(View):
     """ Список мероприятия"""
     def get(self, request, pk):
         event = Event.objects.get(pk=pk)
-        part_event = PartEvent.objects.filter(event=event)
-        print(part_event)
-        return render(request, 'index.html', {'events_detail': event, 'part_event': part_event})
+        part_events = PartEvent.objects.filter(event=event)
+        return render(request, 'index.html', {'events_detail': event, 'part_events': part_events})
+
+
+class PartEventsDetailView(View):
+    """ Список мероприятия"""
+    def get(self, request, pk):
+        part_event = PartEvent.objects.get(pk=pk)
+        return render(request, 'portfolio-detail/part_events.html', {'part_event': part_event})

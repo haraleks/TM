@@ -7,10 +7,14 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Event(models.Model):
     name = models.CharField(
         'Название события', blank=False, max_length=200)
-    start_at = models.DateTimeField(
+    start_at = models.DateField(
         'Дата начала мероприятия', blank=True, null=True)
-    end_at = models.DateTimeField(
+    time_start = models.TimeField(
+        'Время начала мероприятия', blank=True, null=True)
+    end_at = models.DateField(
         'Дата окончания мероприятия', blank=True, null=True)
+    time_end = models.TimeField(
+        'Время окончания мероприятия', blank=True, null=True)
     description = RichTextUploadingField()
     is_free_event = models.BooleanField(
         'Бесплатное мероприятие', default=False)
@@ -32,7 +36,7 @@ class Event(models.Model):
 
     class Meta:
         verbose_name = 'Мероприятие'
-        verbose_name_plural = 'Мероприятий'
+        verbose_name_plural = 'Мероприятия'
 
     def __str__(self):
         return self.name
@@ -41,10 +45,16 @@ class Event(models.Model):
 class PartEvent(models.Model):
     name = models.CharField(
         'Название события', blank=False, max_length=200)
-    start_at = models.DateTimeField(
+    short_description = models.CharField(
+        'Короткое описание', blank=True, max_length=500)
+    start_at = models.DateField(
         'Дата начала мероприятия', blank=True, null=True)
-    end_at = models.DateTimeField(
+    time_start = models.TimeField(
+        'Время начала мероприятия', blank=True, null=True)
+    end_at = models.DateField(
         'Дата окончания мероприятия', blank=True, null=True)
+    time_end = models.TimeField(
+        'Время окончания мероприятия', blank=True, null=True)
     price = models.IntegerField(
         'Стоимость', null=True)
     description = RichTextUploadingField()
@@ -55,9 +65,9 @@ class PartEvent(models.Model):
         'event_crm.Event',
         on_delete=models.CASCADE,
         null=True,
-        verbose_name='Блок мероприятия',
-        related_query_name='part_event'
-    )
+        verbose_name='Мероприяте',
+        related_query_name='part_event',
+        related_name='part_event')
     is_active = models.BooleanField(
         'Активен', null=False, default=True)
     created_at = models.DateTimeField(
@@ -112,8 +122,8 @@ class RegistrationEvent(models.Model):
         'Удален', null=True, default=None, blank=True)
 
     class Meta:
-        verbose_name = 'Регистрация на мероприятии'
-        verbose_name_plural = 'Регистрации на мероприятии'
+        verbose_name = 'Регистрация на мероприятие'
+        verbose_name_plural = 'Регистрации на мероприятие'
 
     def __str__(self):
         return f'{self.event.name} {self.part_event.name} - {self.person_event.full_name}'

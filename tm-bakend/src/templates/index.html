@@ -60,15 +60,17 @@
 <!--            <span class="job">{{ events_detail.part_event.name }}</span>-->
         </div>
         <figure class="profile-image">
-<!--            <img src="{% static 'images/profile.jpg' %}" alt="">-->
             <img src="{{ events_detail.image.url }}" alt="">
 
         </figure>
         <ul class="profile-information">
             <li></li>
-            <li><p><span>Дата начала:</span> {{ events_detail.start_at }}</p></li>
-            <li><p><span>Дата окончания:</span> {{ events_detail.end_at }}</p></li>
+            <li><p><span>Дата начала:</span></p></li>
+              <li><p>{{ events_detail.start_at }}</p></li>
+            <li><p><span>Дата окончания:</span> </p></li>
+             <li><p>{{ events_detail.end_at }}</p></li>
             <li><p><span>Стоимость:</span> {{ events_detail.price }} руб.</p></li>
+
 
         </ul>
 <!--        <div class="col-md-12">-->
@@ -92,10 +94,10 @@
                         <li class="tab">
                             <a class="home-btn" href="#home"><i class="fa fa-home" aria-hidden="true"></i></a>
                         </li>
-                        <li class="tab"><a href="#resume">RESUME</a></li>
-                        <li class="tab"><a href="#portfolio">PORTFOLIO</a></li>
-                        <li class="tab"><a href="#blog">BLOG</a></li>
-                        <li class="tab"><a href="#contact">CONTACT</a></li>
+                        <li class="tab"><a href="#resume">О нас</a></li>
+                        <li class="tab"><a href="#portfolio">Мероприятия</a></li>
+<!--                        <li class="tab"><a href="#blog">BLOG</a></li>-->
+                        <li class="tab"><a href="#contact">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-8 dynamic">
@@ -128,103 +130,133 @@
                         {{ events_detail.description | safe }}
                     </section>
                 </div>
-                <!-- My Services Section -->
-                <div class="row">
-                    <section class="services line graybg col-md-12 padding_50 padbot_50">
-                    <div class="section-title bottom_45"><span></span><h2>My Services</h2></div>
-                    <div class="row">
-                        <!-- a service -->
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="service">
-                                <div class="icon">
-                                    <i class="flaticon-html"></i>
+                <!-- Блоки мероприятий -->
+            <div class="row">
+                <section class="testimonials bottom_30">
+                    <div class="section-title top_60 bottom_30"><span></span><h2>Ступени:</h2></div>
+                    <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
+                        <!-- a item -->
+                        {% for block_event in part_events %}
+                            <a href="blog-posts/blog-1.html" class="col-md-12 item">
+                            <div class="col-md-12 item">
+                                <div class="comment">
+                                    <div class="top-section">
+                                        <figure>
+                                            <img src="{{ block_event.image.url }}" alt="">
+                                        </figure>
+                                        <div class="name-info">
+                                            <span class="name"> {{ block_event.name }}</span>
+                                            <br>
+                                            <span class="job">{{ block_event.start_at }}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p>{{ block_event.short_description }}</p>
                                 </div>
-                                <span class="title">Web Development</span>
-                                <p class="little-text">I have been working on web design for 10 years.</p>
                             </div>
-                        </div>
-                        <!-- a service -->
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="service">
-                                <div class="icon">
-                                    <i class="flaticon-attach"></i>
-                                </div>
-                                <span class="title">Branding Identity</span>
-                                <p class="little-text">We will make you a brand that is catchy and leaves a trace.</p>
-                            </div>
-                        </div>
-                        <!-- a service -->
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="service">
-                                <div class="icon">
-                                    <i class="flaticon-vector"></i>
-                                </div>
-                                <span class="title">Illustrator</span>
-                                <p class="little-text">I have been working on illustration design for 6 years.</p>
-                            </div>
-                        </div>
-                        <!-- a service -->
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="service">
-                                <div class="icon">
-                                    <i class="flaticon-schedule"></i>
-                                </div>
-                                <span class="title">Fast Delivery</span>
-                                <p class="little-text">I deliver your business as fast as possible.</p>
-                            </div>
-                        </div>
+                            </a>
+                        {% endfor %}
+
                     </div>
                 </section>
-                </div>
+            </div>
+                <!-- My Services Section -->
+<!--                <div class="row">-->
+<!--                    <section class="services line graybg col-md-12 padding_50 padbot_50">-->
+<!--                    <div class="section-title bottom_45"><span></span><h2>Ступени курса</h2></div>-->
+<!--                    <div class="row">-->
+<!--                        &lt;!&ndash; a service &ndash;&gt;-->
+<!--                        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                            <div class="service">-->
+<!--                                <div class="icon">-->
+<!--                                    <i class="flaticon-html"></i>-->
+<!--                                </div>-->
+<!--                                <span class="title">{{ part_event.name }}</span>-->
+<!--                                <p class="little-text">I have been working on web design for 10 years.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; a service &ndash;&gt;-->
+<!--                        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                            <div class="service">-->
+<!--                                <div class="icon">-->
+<!--                                    <i class="flaticon-attach"></i>-->
+<!--                                </div>-->
+<!--                                <span class="title">Branding Identity</span>-->
+<!--                                <p class="little-text">We will make you a brand that is catchy and leaves a trace.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; a service &ndash;&gt;-->
+<!--                        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                            <div class="service">-->
+<!--                                <div class="icon">-->
+<!--                                    <i class="flaticon-vector"></i>-->
+<!--                                </div>-->
+<!--                                <span class="title">Illustrator</span>-->
+<!--                                <p class="little-text">I have been working on illustration design for 6 years.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; a service &ndash;&gt;-->
+<!--                        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                            <div class="service">-->
+<!--                                <div class="icon">-->
+<!--                                    <i class="flaticon-schedule"></i>-->
+<!--                                </div>-->
+<!--                                <span class="title">Fast Delivery</span>-->
+<!--                                <p class="little-text">I deliver your business as fast as possible.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </section>-->
+<!--                </div>-->
                 <!-- Skills Section -->
-                <div class="row">
-                    <section class="design-skills col-md-6 padding_60 padbot_50">
-                        <div class="section-title bottom_45"><span></span><h2>Design Skills</h2></div>
-                        <ul class="skill-list">
-                            <li> 
-                                <h3>Photoshop</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:80%;"></div>
-                                </div>
-                            </li>
-                            <li> 
-                                <h3>Sketch</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:60%;"></div>
-                                </div>
-                            </li>
-                            <li> 
-                                <h3>Adobe Xd</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:30%;"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </section>
-                    <section class="code-skills col-md-6 padding_60">
-                        <div class="section-title bottom_45"><span></span><h2>Code Skills</h2></div>
-                        <ul class="skill-list">
-                            <li> 
-                                <h3>Javascript</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:80%;"></div>
-                                </div>
-                            </li>
-                            <li> 
-                                <h3>HTML5</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:60%;"></div>
-                                </div>
-                            </li>
-                            <li> 
-                                <h3>CSS3</h3>
-                                <div class="progress">
-                                    <div class="percentage" style="width:30%;"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </section>
-                </div>
+<!--                <div class="row">-->
+<!--                    <section class="design-skills col-md-6 padding_60 padbot_50">-->
+<!--                        <div class="section-title bottom_45"><span></span><h2>Design Skills</h2></div>-->
+<!--                        <ul class="skill-list">-->
+<!--                            <li>-->
+<!--                                <h3>Photoshop</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:80%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <h3>Sketch</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:60%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <h3>Adobe Xd</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:30%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </section>-->
+<!--                    <section class="code-skills col-md-6 padding_60">-->
+<!--                        <div class="section-title bottom_45"><span></span><h2>Code Skills</h2></div>-->
+<!--                        <ul class="skill-list">-->
+<!--                            <li>-->
+<!--                                <h3>Javascript</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:80%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <h3>HTML5</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:60%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <h3>CSS3</h3>-->
+<!--                                <div class="progress">-->
+<!--                                    <div class="percentage" style="width:30%;"></div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </section>-->
+<!--                </div>-->
             </div>
             
             <!-- Resume Page
@@ -466,20 +498,20 @@
             <div id="portfolio" class="row bottom_45">
                 <section class="col-md-12">
                     <div class="col-md-12 content-header bottom_15">
-                        <div class="section-title top_30 bottom_30"><span></span><h2>Portfolio</h2></div>
+                        <div class="section-title top_30 bottom_30"><span></span><h2>Запланированные мероприятия</h2></div>
                         <div id="filters-container">
                             <!-- '*' means shows all item elements -->
-                            <div data-filter="*" class="cbp-filter-item cbp-filter-item-active">All</div>
-                            <div data-filter=".webdesign" class="cbp-filter-item">Web Design</div>
-                            <div data-filter=".motion" class="cbp-filter-item">Motion Graphic</div>
-                            <div data-filter=".illustration" class="cbp-filter-item">Illustration</div>
-                            <div data-filter=".photography" class="cbp-filter-item">Photography</div>
+                            <div data-filter="*" class="cbp-filter-item cbp-filter-item-active">Все</div>
+                            <div data-filter=".webdesign" class="cbp-filter-item">Курс НЛП Практик</div>
+                            <div data-filter=".motion" class="cbp-filter-item">Мастер классы</div>
+                            <div data-filter=".illustration" class="cbp-filter-item">Тренинги</div>
+                            <div data-filter=".photography" class="cbp-filter-item">Трансформационные Игры</div>
                         </div>
                     </div>
                     <div id="grid-container" class="top_60">
                         <!-- a work -->
                         <div class="cbp-item webdesign">
-                            <a href="portfolio-detail/work-01.html" class=" cbp-singlePage">
+                            <a href="portfolio-detail/part_events.html" class=" cbp-singlePage">
                                 <figure>
                                     <div class="icon">
                                         <i class="fa fa-clone" aria-hidden="true"></i>
@@ -788,7 +820,7 @@
 ================================================== --> 
 <footer>
     <div class="footer col-md-12 top_30 bottom_30">
-        <div class="name col-md-4 hidden-md hidden-sm hidden-xs">Henry Rooney.</div>
+        <div class="name col-md-4 hidden-md hidden-sm hidden-xs">Территория разума.</div>
         <div class="copyright col-lg-8 col-md-12">© 2017 All rights reserved. Designed by <a href="https://themeforest.net/user/tavonline">tavonline</a> </div>  
     </div>
 </footer>
