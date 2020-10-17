@@ -1045,7 +1045,8 @@ ul.timeline{
 /*Blog Detail Page */
 
 #blog-post{
-    padding: 30px 15px;
+    padding: 10px 10px;
+    position: relative;
 }
 
 #blog-post .post .blog-image {

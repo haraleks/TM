@@ -15,7 +15,7 @@ class EventsDetailView(View):
     """ Список мероприятия"""
     def get(self, request, pk):
         event = Event.objects.get(pk=pk)
-        part_events = PartEvent.objects.filter(event=event)
+        part_events = PartEvent.objects.filter(event=event).order_by('pk')
         return render(request, 'index.html', {'events_detail': event, 'part_events': part_events})
 
 
@@ -23,4 +23,4 @@ class PartEventsDetailView(View):
     """ Список мероприятия"""
     def get(self, request, pk):
         part_event = PartEvent.objects.get(pk=pk)
-        return render(request, 'portfolio-detail/part_events.html', {'part_event': part_event})
+        return render(request, 'blog-posts/blog-1.html', {'part_event': part_event})

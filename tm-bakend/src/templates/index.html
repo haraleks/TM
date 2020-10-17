@@ -137,7 +137,7 @@
                     <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
                         <!-- a item -->
                         {% for block_event in part_events %}
-                            <a href="blog-posts/blog-1.html" class="col-md-12 item">
+                            <a href="{% url 'part_events_pk' block_event.pk %}" class="col-md-12 item">
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
