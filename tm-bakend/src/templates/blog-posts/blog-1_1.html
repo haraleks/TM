@@ -53,19 +53,19 @@
 <div class="col-lg-3 col-md-4">
     <div class="profile">
         <div class="profile-name">
-            <span class="name">{{ part_event.name }}</span><br>
-            <span class="job">{{ part_event.short_description }}</span>
+            <span class="name">{{ event.name }}</span><br>
+<!--            <span class="job">{{ part_event.short_description }}</span>-->
         </div>
         <figure class="profile-image">
-            <img src="{{ part_event.image.url }}" alt="">
+            <img src="{{ event.image.url }}" alt="">
         </figure> 
         <ul class="profile-information">
             <li><img src="{% static 'images/glasses.png' %}" alt=""></li>
             <li><p><span>Дата начала:</span></p></li>
-              <li><p>{{ part_event.start_at }}</p></li>
+              <li><p>{{ event.start_at }}</p></li>
             <li><p><span>Дата окончания:</span> </p></li>
-             <li><p>{{ part_event.end_at }}</p></li>
-            <li><p><span>Стоимость:</span> {{ part_event.price }} руб.</p></li>
+             <li><p>{{ event.end_at }}</p></li>
+            <li><p><span>Стоимость:</span> {{ event.price }} руб.</p></li>
         </ul>
         <div class="col-md-12">
             <button class="site-btn icon">Оставить заявку <i class="fa fa-download" aria-hidden="true"></i></button>
@@ -88,7 +88,7 @@
                         <li class="tab">
                             <a class="home-btn" href="{% url 'next_event' %}"><i class="fa fa-home" aria-hidden="true"></i></a>
                         </li>
-                        <li class="tab"><a href="{% url 'events_pk' part_event.event.id %}">На страницу мероприятия</a></li>
+                        <li class="tab"><a href="{% url 'events_pk' event.id %}">На страницу мероприятия</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-8 dynamic">
@@ -119,7 +119,7 @@
 <!--                    <img src="{% static 'images/blogs/blog-1.jpg' %}" alt="">-->
 <!--                </div>-->
                 <div class="post-content">
-                    {{ part_event.description | safe }}
+                    {{ event.description | safe }}
                 </div>
                  <!-- Tags -->
 <!--                <div class="tags top_30">-->

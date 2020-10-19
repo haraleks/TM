@@ -2,11 +2,16 @@ from django.db import models
 from tm.utils import path_to_upload_file
 from event_crm.models.utils import PaymemntsTypes
 from ckeditor_uploader.fields import RichTextUploadingField
+from event_crm.constants import EventTypes
 
 
 class Event(models.Model):
     name = models.CharField(
         'Название события', blank=False, max_length=200)
+    short_description = models.CharField(
+        'Короткое описание', blank=True, max_length=500)
+    type = models.CharField(
+        'Тип мероприятия', max_length=50, choices=EventTypes.CHOISES(), blank=True, null=True)
     start_at = models.DateField(
         'Дата начала мероприятия', blank=True, null=True)
     time_start = models.TimeField(
@@ -39,12 +44,29 @@ class Event(models.Model):
         verbose_name_plural = 'Мероприятия'
 
     def __str__(self):
-        return self.name
+        return f'{self.pk} - {self.name}'
 
+
+class NamePart(models.Model):
+    name = models.CharField(
+        'Название блока', blank=False, max_length=50)
+    name_plural = models.CharField(
+        'Название блоков', blank=True, max_length=50)
+
+    class Meta:
+        verbose_name = 'Название блока'
+        verbose_name_plural = 'Название блоков'
+
+    def __str__(self):
+        return f'{self.pk} - {self.name}'
 
 class PartEvent(models.Model):
     name = models.CharField(
         'Название события', blank=False, max_length=200)
+    name_part = models.ForeignKey(
+        NamePart, on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Название блока')
     short_description = models.CharField(
         'Короткое описание', blank=True, max_length=500)
     start_at = models.DateField(
@@ -82,7 +104,7 @@ class PartEvent(models.Model):
         verbose_name_plural = 'Блоков'
 
     def __str__(self):
-        return self.name
+        return f'{self.pk} - {self.name}. {self.event.name}'
 
 
 class RegistrationEvent(models.Model):
@@ -192,3 +214,17 @@ class Payments(models.Model):
     def __str__(self):
         return f'{self.registration_event.person_event.full_name} сумма: {amount/100}'
 
+
+class Speackers(models.Model):
+    name = models.CharField(
+        'Имя спикера', max_length=300, blank=True, null=True, default='')
+    description = RichTextUploadingField()
+    image = models.ImageField(
+        'Картинка', upload_to=path_to_upload_file, height_field=None, width_field=None,
+        max_length=None, default='', blank=True)
+    class Meta:
+        verbose_name = 'Спикер'
+        verbose_name_plural = 'Спикеры'
+
+    def __str__(self):
+        return f'{self.pk} - {self.name}'
